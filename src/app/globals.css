@@ -31,3 +31,7 @@ body {
     text-wrap: balance;
   }
 }
+
+.second-child-pt-10:nth-child(2) {
+  padding-top: 2.5rem; /* equivalent to 10 in Tailwind's spacing scale */
+}

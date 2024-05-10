@@ -1,9 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getJsonData } from "@/app/utils/getJsonData";
+import { getJsonData } from "@/utils/getJsonData";
 
-export default function Home() {
-  const diaryData = getJsonData('src/app/datas/1715262705.json');
+async function getData() {
+    const res = await fetch('http://localhost:3000/api/list', {cache: "no-store"})
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch data')
+    }
+
+    return res.json()
+}
+
+export default async function Home() {
+
+  const diaryData = await getData();
+
   return (
       <div className="container mx-auto px-4 pt-10">
           <div className="text-lg sm:text-left">
@@ -27,16 +39,13 @@ export default function Home() {
           </div>
 
           <div className={"flex flex-row justify-start items-center pt-10"}>
-
-          </div>
-          {/*
-              Reference site : https://stackoverflow.com/questions/70317603/nextjs-ssr-getting-next-data-json-requst
-
-              must apart from app folder
-          */}
-
-          <div className={"text-lg sm:text-left"}>
-              {diaryData.title}
+              <div className={"text-lg sm:text-left px-10"}>
+                  {diaryData.titles.map((title : string) => {
+                      return (
+                          <div key={title} className={"second-child-pt-10"}>{title}</div>
+                      )
+                  })}
+              </div>
           </div>
       </div>
   );
