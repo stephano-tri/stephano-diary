@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { getJsonData } from "@/app/utils/getJsonData";
 
 export default function Home() {
@@ -7,17 +8,21 @@ export default function Home() {
       <div className="container mx-auto px-4 pt-10">
           <div className="text-lg sm:text-left">
               <div className="flex flex-row justify-start items-center">
-                  <div className="pr-2">
-                      <Image
-                          className={"rounded-full aspect-square object-cover"}
-                          src="/profile.jpg"
-                          alt={"github profile"}
-                          width={28}
-                          height={28}
-                          priority
-                      ></Image>
-                  </div>
-              Stephano: Success depends on attitude.
+                  <Link className={"flex flex-row"} href={"https://github.com/stephano-tri"}>
+                      <div className="pr-2">
+                          <Image
+                              className={"rounded-full aspect-square object-cover"}
+                              src="/profile.jpg"
+                              alt={"github profile"}
+                              width={28}
+                              height={28}
+                              priority
+                          ></Image>
+                      </div>
+                      <div>
+                          Stephano: Success depends on attitude.
+                      </div>
+                  </Link>
               </div>
           </div>
 
